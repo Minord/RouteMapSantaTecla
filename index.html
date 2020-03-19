@@ -9,8 +9,14 @@
     </head>
 
     <body>
+        <h2>Rutas Santa Tecla a Sansalvador (AMSS) </h2>
+
+
+        <p id="warrnig">Adventencia: Este mapa solo es un experimento basado en los datos del VMT, por lo tanto la informacion de este mapa, puede estar mal copiada o desactualizada.</p>
+
         <div id='map'></div>
         <script>
+            //color palette
             var back_ground_color = '#f4f4f4';
             var green_areas_color = '#def2c9';
             var river_color = '#70d4ed';
@@ -18,13 +24,38 @@
             var ways_color = '#e7e7e7';
             var trees_color = '#67c486';
 
+            var route_101a_1_color = '#8286bf';
+            var route_101a_2_color = '#7fb3da';
+            var route_101b_1_color = '#ac53a6';
+            var route_101b_2_color = '#cd98dd';
+            var route_101c_color = '#b2e48b';
+            var route_101d_color = '#6abaa8';
+            var route_42a_color = '#c36b5f';
+            var route_42b_color = '#f7bf79';
+            var route_42c_color = '#a5bf72';
+            var route_97_color = '#eb889c';
+
+            var stops_color = '#ffffff';
+
+            var label_color = '#31296f';
+            var out_color = '#fbffc9';
+
+
+
+
+
             var map = new mapboxgl.Map({
                 container : 'map',
                 zoom: 11.58,
                 center: [-88.42854, 13.93089],
+
+                
                 style: {
                     version: 8,
                     name: 'santa tecla bus routes Map',
+
+                    glyphs : "http://glfonts.lukasmartinelli.ch/fonts/{fontstack}/{range}.pbf",
+
                     sources: {
                         green_areas_s: {
                             type: 'geojson',
@@ -62,11 +93,13 @@
                     },              
 
                     layers: [
+                        //capa de fondo
                         {
                             id: 'background',
                             type: 'background',
                             paint: { 'background-color': back_ground_color }
                         },
+                        //capa de areas verdes
                         {
                             'id': 'green_areas_l',
                             'type': 'fill',
@@ -77,6 +110,7 @@
                                 'fill-opacity': 1
                             }
                         },
+                        //capa de rios
                         {
                             'id': 'rivers',
                             'type': 'line',
@@ -89,9 +123,7 @@
                                 'line-width': 2,
                             }
                         },
-                        //{
-                        //    'id': 'builds_shadow'
-                        //},
+                        //capa de edificios
                         {
                             'id': 'builds',
                             'source': 'builds_s',
@@ -102,6 +134,7 @@
                                 'fill-opacity': 1
                             }
                         },
+                        // capa de camino base
                         {
                             'id': 'ways_base',
                             'source': 'ways_s',
@@ -112,6 +145,7 @@
                                 'fill-opacity': 1
                             }
                         },
+                        // capa de arboles
                         {
                             'id': 'trees',
                             'source': 'trees_s',
@@ -120,8 +154,62 @@
                                 'circle-color': trees_color,
                                 'circle-radius': 6
                             }
+                        },
+                        //capa de rutas
+                        {
+                            'id': 'routes_lines',
+                            'source': 'routes_lines_s',
+                            'type': 'fill',
+                            'layout': {},
+                            'paint':{
+                                'fill-color' : 
+                                {
+                                    'property': 'route_code',
+                                    'type': 'categorical',
+                                    'stops' : [['101a_1', route_101a_1_color],
+                                              ['101a_2', route_101a_2_color],
+                                              ['101b_1', route_101b_1_color],
+                                              ['101b_2', route_101b_2_color],
+                                              ['101c', route_101c_color],
+                                              ['101d', route_101d_color],
+                                              ['42a', route_42a_color],
+                                              ['42b', route_42b_color],
+                                              ['42c', route_42c_color],
+                                              ['97', route_97_color]]
+                                }
+                            }
+                        },
+                        //capa de paradas
+                        {
+                            'id': 'stops',
+                            'source': 'routes_stops_s',
+                            'type': 'circle',
+                            'paint': {
+                                'circle-color': stops_color,
+                                'circle-radius': 3,
+                                'circle-opacity': 0.8
+                            }
+                        },
+                        //copa de labels de nombres
+                        {
+                           'id': 'names_labels',
+                            'source': 'names_points_s',
+                            'type': 'symbol',
+                            'layout' : {
+                                'text-field': ['format', ['coalesce', ['get', 'name']],
+                                { 'font-scale': 0.5 }
+                                ],
+                                'text-font': ['Open Sans Bold'],
+                                'text-offset': [0, 0],
+                                'text-anchor': 'bottom-left',
+                                'text-max-width': 4
+                            },
+                            'paint' : {
+                                'text-color': label_color,
+                                'text-halo-width' : 2,
+                                'text-halo-color' : out_color
+                            }
                         }
-                        //here is going the routes
                     ]
                 }
             }); 
