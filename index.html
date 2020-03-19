@@ -13,17 +13,19 @@
         <script>
             var green_areas_color = '#def2c9';
 
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWlub3JkIiwiYSI6ImNrMzdxMngybDAxZjIzbHBoYW1wN2ZyOWgifQ.1pv_jJcXLyBj-FRrjuYBPg';
             var map = new mapboxgl.Map({
                 container : 'map',
                 zoom: 9.7,
                 center: [-88.434, 13.994],
+                style: 'mapbox://styles/mapbox/streets-v11'
                 //9.6 zoom {lng: -88.4340411043064, lat: 13.994344001419933}
             }); 
 
             map.on('load', function(){
                 map.addSource('green_areas_s', {
                     type : 'geojson',
-                    data : 'geo_data/green_areas.geojson'
+                    data : 'https://raw.githubusercontent.com/Minord/RouteMapSantaTecla/master/geo_data/green_areas.geojson'
                 });
 
                 map.addLayer({
@@ -33,7 +35,7 @@
                     'layout': {},
                     'paint': {
                         'fill-color': green_areas_color,
-                        'fill-opacity': 0.8
+                        'fill-opacity': 1
                     }
                 });
             });
