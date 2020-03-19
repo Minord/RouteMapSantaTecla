@@ -11,14 +11,17 @@
     <body>
         <div id='map'></div>
         <script>
-            var back_ground_color = '#f4f4f4'
+            var back_ground_color = '#f4f4f4';
             var green_areas_color = '#def2c9';
             var river_color = '#70d4ed';
+            var builds_color = '#ffffff';
+            var ways_color = '#e7e7e7';
+            var trees_color = '#67c486';
 
             var map = new mapboxgl.Map({
                 container : 'map',
-                zoom: 9.7,
-                center: [-88.434, 13.994],
+                zoom: 11.58,
+                center: [-88.42854, 13.93089],
                 style: {
                     version: 8,
                     name: 'santa tecla bus routes Map',
@@ -75,22 +78,49 @@
                             }
                         },
                         {
-                            'id': 'rivers'
+                            'id': 'rivers',
+                            'type': 'line',
+                            'source': 'rivers_s',
+                            'layout': {
+                                'line-cap': 'round'
+                            },
+                            'paint' : {
+                                'line-color': river_color,
+                                'line-width': 2,
+                            }
+                        },
+                        //{
+                        //    'id': 'builds_shadow'
+                        //},
+                        {
+                            'id': 'builds',
+                            'source': 'builds_s',
+                            'type': 'fill',
+                            'layout': {},
+                            'paint': {
+                                'fill-color': builds_color,
+                                'fill-opacity': 1
+                            }
                         },
                         {
-                            'id': 'builds_shadow'
+                            'id': 'ways_base',
+                            'source': 'ways_s',
+                            'type': 'fill',
+                            'layout': {},
+                            'paint': {
+                                'fill-color': ways_color,
+                                'fill-opacity': 1
+                            }
                         },
                         {
-                            'id': 'ways_base'
-                        },
-                        {
-                            'id': 'builds'
-                        },
-                        {
-                            'id': 'trees'
-                        },
-                        
-
+                            'id': 'trees',
+                            'source': 'trees_s',
+                            'type' : 'circle',
+                            'paint': {
+                                'circle-color': trees_color,
+                                'circle-radius': 6
+                            }
+                        }
                         //here is going the routes
                     ]
                 }
