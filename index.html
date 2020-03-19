@@ -11,34 +11,90 @@
     <body>
         <div id='map'></div>
         <script>
+            var back_ground_color = '#f4f4f4'
             var green_areas_color = '#def2c9';
+            var river_color = '#70d4ed';
 
-            mapboxgl.accessToken = 'pk.eyJ1IjoibWlub3JkIiwiYSI6ImNrMzdxMngybDAxZjIzbHBoYW1wN2ZyOWgifQ.1pv_jJcXLyBj-FRrjuYBPg';
             var map = new mapboxgl.Map({
                 container : 'map',
                 zoom: 9.7,
                 center: [-88.434, 13.994],
-                style: 'mapbox://styles/mapbox/streets-v11'
-                //9.6 zoom {lng: -88.4340411043064, lat: 13.994344001419933}
+                style: {
+                    version: 8,
+                    name: 'santa tecla bus routes Map',
+                    sources: {
+                        green_areas_s: {
+                            type: 'geojson',
+                            data: 'https://gist.githubusercontent.com/Minord/67898ff6563fa72fd9194b2cee409678/raw/6a8937e090709367e2c9910293965de7f72b9233/green_areas.geojson'
+                        },
+
+                        rivers_s: {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        trees_s : {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        builds_s : {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        ways_s : {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        routes_lines_s: {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        routes_stops_s: {
+                            type : 'geojson',
+                            data : ''
+                        },
+                        names_points_s : {
+                            type: 'geojson',
+                            data: ''
+                        }
+                    },              
+
+                    layers: [
+                        {
+                            id: 'background',
+                            type: 'background',
+                            paint: { 'background-color': back_ground_color }
+                        },
+                        {
+                            'id': 'green_areas_l',
+                            'type': 'fill',
+                            'source': 'green_areas_s',
+                            'layout': {},
+                            'paint': {
+                                'fill-color': green_areas_color,
+                                'fill-opacity': 1
+                            }
+                        },
+                        {
+                            'id': 'rivers'
+                        },
+                        {
+                            'id': 'builds_shadow'
+                        },
+                        {
+                            'id': 'ways_base'
+                        },
+                        {
+                            'id': 'builds'
+                        },
+                        {
+                            'id': 'trees'
+                        },
+                        
+
+                        //here is going the routes
+                    ]
+                }
             }); 
-
-            map.on('load', function(){
-                map.addSource('green_areas_s', {
-                    type : 'geojson',
-                    data : 'https://raw.githubusercontent.com/Minord/RouteMapSantaTecla/master/geo_data/green_areas.geojson'
-                });
-
-                map.addLayer({
-                    'id': 'green_areas_l',
-                    'type': 'fill',
-                    'source': 'green_areas_s',
-                    'layout': {},
-                    'paint': {
-                        'fill-color': green_areas_color,
-                        'fill-opacity': 1
-                    }
-                });
-            });
         </script>
     </body>
 </html>
