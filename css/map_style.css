@@ -26,3 +26,45 @@ h2 {
     left: 20px;
     opacity: 0.3;
 }
+
+#control {
+    position : fixed;
+    top : 50px;
+    left : 10px;
+}
+
+#dark_b {
+    color: #ffffff;
+    background-color: #000000;
+    border-style: none;
+    padding: 10px;
+}
+
+#dark_b:hover {
+    background-color: #303030;
+}
+
+#dark_b:active {
+    background-color: #5e5e5e;
+}
+
+#white_b {
+    color: #000;
+    background-color: #fff;
+    border-style: none;
+    padding: 10px;
+}
+
+#white_b:hover {
+    background-color: rgb(212, 212, 212);
+}
+
+#white_b:active {
+    background-color: #afafaf;
+}
+
+.route-item-cointainer {
+    color: #fff;
+    background-color: #31296f; 
+    padding: 8px;
+}

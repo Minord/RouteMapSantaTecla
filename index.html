@@ -14,8 +14,57 @@
 
         <p id="warrnig">Adventencia: Este mapa solo es un experimento basado en los datos del VMT, por lo tanto la informacion de este mapa, puede estar mal copiada o desactualizada.</p>
 
+
+        <div controller id = "control" style="background-color: # ;">
+            <button onclick="dark_mode()" id = "dark_b">Dark</button>
+            <button onclick="white_mode()" id = "white_b">White</button> <br>
+
+            <div class = "route-item-cointainer " style="background-color: #8286bf ;">
+                <input type="checkbox" id="101a_1" name="ruta1" value = >
+                <label for="ruta1">Ruta 101A (1)</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #7fb3da ;">
+                <input type="checkbox" id="101a_2" name="ruta2">
+                <label for="ruta2">Ruta 101A (2)</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #ac53a6;">
+                <input type="checkbox" id="101b_1" name="ruta3">
+                <label for="ruta3">Ruta 101B (1)</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #cd98dd ;">
+                <input type="checkbox" id="101b_2" name="ruta4">
+                <label for="ruta4">Ruta 101B (2)</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #b2e48b ;">
+                <input type="checkbox" id="101c" name="ruta5">
+                <label for="ruta5">Ruta 101C</label> <br>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #6abaa8 ;">
+                <input type="checkbox" id="101d" name="ruta6">
+                <label for="ruta6">Ruta 101D</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #c36b5f ;">
+                <input type="checkbox" id="42a" name="ruta7">
+                <label for="ruta7">Ruta 42A</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #f7bf79 ;">
+                <input type="checkbox" id="42b" name="ruta8">
+                <label for="ruta8">Ruta 42B</label>
+            </div>
+            <div class = "route-item-cointainer " style="background-color: #a5bf72 ;">
+                <input type="checkbox" id="42c" name="ruta9">
+                <label for="ruta9">Ruta 42C</label>
+            </div>
+            <div  class = "route-item-cointainer " style="background-color: #eb889c ;">
+                <input type="checkbox" id="97" name="ruta9">
+                <label for="ruta9">Ruta 97</label>
+            </div>
+        </div>
+
         <div id='map'></div>
         <script>
+
+
             //color palette
             var back_ground_color = '#f4f4f4';
             var green_areas_color = '#def2c9';
@@ -41,7 +90,7 @@
             var out_color = '#fbffc9';
 
 
-
+            
 
 
             var map = new mapboxgl.Map({
@@ -213,6 +262,58 @@
                     ]
                 }
             }); 
+
+            function dark_mode(){
+                map.setPaintProperty('background', 'background-color', '#232323');
+                map.setPaintProperty('green_areas_l', 'fill-color', '#332323');
+                map.setPaintProperty('rivers', 'line-color', '#332323');
+                map.setPaintProperty('builds', 'fill-color', '#932323');
+                map.setPaintProperty('ways_base', 'fill-color', '#832323');
+                map.setPaintProperty('trees', 'circle-color', '#732323');
+                map.setPaintProperty('stops', 'circle-color', '#632323');
+                map.setPaintProperty('names_labels', 'text-color', '#233323');
+                map.setPaintProperty('names_labels', 'text-halo-color', '#255323');
+                map.setPaintProperty('routes_lines', 'fill-color', {
+                                                                        'property': 'route_code',
+                                                                        'type': 'categorical',
+                                                                        'stops' : [['101a_1', '#233323'],
+                                                                            ['101a_2', '#133323'],
+                                                                            ['101b_1', '#233323'],
+                                                                            ['101b_2', '#333323'],
+                                                                            ['101c', '#433323'],
+                                                                            ['101d', '#533323'],
+                                                                            ['42a', '#633323'],
+                                                                            ['42b', '#733323'],
+                                                                            ['42c', '#833323'],
+                                                                            ['97', '#933323']]
+                });
+            }
+
+            function white_mode(){
+                map.setPaintProperty('background', 'background-color',  back_ground_color);
+                map.setPaintProperty('green_areas_l', 'fill-color', green_areas_color);
+                map.setPaintProperty('rivers', 'line-color',river_color);
+                map.setPaintProperty('builds', 'fill-color', builds_color);
+                map.setPaintProperty('ways_base', 'fill-color', ways_color);
+                map.setPaintProperty('trees', 'circle-color', trees_color);
+                map.setPaintProperty('stops', 'circle-color', stops_color);
+                map.setPaintProperty('names_labels', 'text-color', label_color);
+                map.setPaintProperty('names_labels', 'text-halo-color', out_color);
+                map.setPaintProperty('routes_lines', 'fill-color', {
+                                                                        'property': 'route_code',
+                                                                        'type': 'categorical',
+                                                                        'stops' : [['101a_1', route_101a_1_color],
+                                                                            ['101a_2', route_101a_2_color],
+                                                                            ['101b_1', route_101b_1_color],
+                                                                            ['101b_2', route_101b_2_color],
+                                                                            ['101c', route_101c_color],
+                                                                            ['101d', route_101d_color],
+                                                                            ['42a', route_42a_color],
+                                                                            ['42b', route_42b_color],
+                                                                            ['42c', route_42c_color],
+                                                                            ['97', route_97_color]]
+                });
+            }
         </script>
     </body>
 </html>
