@@ -9,55 +9,55 @@
     </head>
 
     <body>
-        <h2>Rutas Santa Tecla a Sansalvador (AMSS) </h2>
+        <h2>Rutas Santa Tecla a Sansalvador (AMSS) Demo </h2>
 
 
         <p id="warrnig">Adventencia: Este mapa solo es un experimento basado en los datos del VMT, por lo tanto la informacion de este mapa, puede estar mal copiada o desactualizada.</p>
 
 
-        <div controller id = "control" style="background-color: # ;">
+        <div controller id = "control">
             <button onclick="dark_mode()" id = "dark_b">Dark</button>
             <button onclick="white_mode()" id = "white_b">White</button> <br>
 
-            <div class = "route-item-cointainer " style="background-color: #8286bf ;">
-                <input type="checkbox" id="101a_1" name="ruta1" value = >
+            <div id = "ruta1" class = "route-item-cointainer " style="background-color: #8286bf ;">
+                <input type="checkbox" id="101a_1" name="ruta1" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta1">Ruta 101A (1)</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #7fb3da ;">
-                <input type="checkbox" id="101a_2" name="ruta2">
+            <div id = "ruta2" class = "route-item-cointainer " style="background-color: #7fb3da ;">
+                <input type="checkbox" id="101a_2" name="ruta2" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta2">Ruta 101A (2)</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #ac53a6;">
-                <input type="checkbox" id="101b_1" name="ruta3">
+            <div id = "ruta3" class = "route-item-cointainer " style="background-color: #ac53a6;">
+                <input type="checkbox" id="101b_1" name="ruta3" onclick="updateRoutesFilter() "Checked>
                 <label for="ruta3">Ruta 101B (1)</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #cd98dd ;">
-                <input type="checkbox" id="101b_2" name="ruta4">
+            <div id = "ruta4" class = "route-item-cointainer " style="background-color: #cd98dd ;">
+                <input type="checkbox" id="101b_2" name="ruta4" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta4">Ruta 101B (2)</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #b2e48b ;">
-                <input type="checkbox" id="101c" name="ruta5">
+            <div id = "ruta5" class = "route-item-cointainer " style="background-color: #b2e48b ;">
+                <input type="checkbox" id="101c" name="ruta5" onclick="updateRoutesFilter()" Checked>  
                 <label for="ruta5">Ruta 101C</label> <br>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #6abaa8 ;">
-                <input type="checkbox" id="101d" name="ruta6">
+            <div id = "ruta6" class = "route-item-cointainer " style="background-color: #6abaa8 ;">
+                <input type="checkbox" id="101d" name="ruta6" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta6">Ruta 101D</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #c36b5f ;">
-                <input type="checkbox" id="42a" name="ruta7">
+            <div id = "ruta7" class = "route-item-cointainer " style="background-color: #c36b5f ;">
+                <input type="checkbox" id="42a" name="ruta7" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta7">Ruta 42A</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #f7bf79 ;">
-                <input type="checkbox" id="42b" name="ruta8">
+            <div id = "ruta8" class = "route-item-cointainer " style="background-color: #f7bf79 ;">
+                <input type="checkbox" id="42b" name="ruta8" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta8">Ruta 42B</label>
             </div>
-            <div class = "route-item-cointainer " style="background-color: #a5bf72 ;">
-                <input type="checkbox" id="42c" name="ruta9">
+            <div id = "ruta9" class = "route-item-cointainer " style="background-color: #a5bf72 ;">
+                <input type="checkbox" id="42c" name="ruta9" onclick="updateRoutesFilter()" Checked>
                 <label for="ruta9">Ruta 42C</label>
             </div>
-            <div  class = "route-item-cointainer " style="background-color: #eb889c ;">
-                <input type="checkbox" id="97" name="ruta9">
-                <label for="ruta9">Ruta 97</label>
+            <div  id = "ruta10" class = "route-item-cointainer " style="background-color: #eb889c ;">
+                <input type="checkbox" id="97" name="ruta10" onclick="updateRoutesFilter()" Checked>
+                <label for="ruta10">Ruta 97</label>
             </div>
         </div>
 
@@ -313,6 +313,68 @@
                                                                             ['42c', route_42c_color],
                                                                             ['97', route_97_color]]
                 });
+
+                
+            }
+            function updateRoutesFilter(){
+                    let ruta_101a_1 = document.getElementById('101a_1').checked;
+                    let ruta_101a_2 = document.getElementById('101a_2').checked;
+                    let ruta_101b_1 = document.getElementById('101b_1').checked;
+                    let ruta_101b_2 = document.getElementById('101b_2').checked;
+                    let ruta_101c = document.getElementById('101c').checked;
+                    let ruta_101d = document.getElementById('101d').checked;
+                    let ruta_42a = document.getElementById('42a').checked;
+                    let ruta_42b = document.getElementById('42b').checked;
+                    let ruta_42c = document.getElementById('42c').checked;
+                    let ruta_97 = document.getElementById('97').checked;
+
+                    let is_all_true = ruta_101a_1 && ruta_101a_2 && ruta_101b_1 &&
+                                      ruta_101b_2 && ruta_101c && ruta_101d && ruta_42a
+                                      ruta_42b && ruta_42c && ruta_97;
+
+                    //create filter
+                    if( !is_all_true){
+                        list_filtered_routes = [];
+                        if (ruta_101a_1) {
+                            list_filtered_routes.push('101a_1');
+                        }
+                        if(ruta_101a_2){
+                            list_filtered_routes.push('101a_2');
+                        } 
+    
+                        if(ruta_101b_1){
+                            list_filtered_routes.push('101b_1');
+                        }
+                        if(ruta_101b_2){
+                            list_filtered_routes.push('101b_2');
+                        }
+                        if(ruta_101c){
+                            list_filtered_routes.push('101c');
+                        }
+                        if(ruta_101d){
+                            list_filtered_routes.push('101d');
+                        }
+                        if(ruta_42a){
+                            list_filtered_routes.push('42a');
+                        }
+                        if(ruta_42b){
+                            list_filtered_routes.push('42b');
+                        }
+                        if(ruta_42c){
+                            list_filtered_routes.push('42c');
+                        }
+                        if(ruta_97){
+                            list_filtered_routes.push('97');
+                        }
+                        map.setFilter('routes_lines', ["in", "route_code"].concat(list_filtered_routes));
+                        map.setFilter('stops', ["in", "route_id"].concat(list_filtered_routes));
+
+                    }
+                    //delete the filter
+                    else{
+                        map.setFilter('routes_lines', null);
+                        map.setFilter('stops', null);
+                    }
             }
         </script>
     </body>
